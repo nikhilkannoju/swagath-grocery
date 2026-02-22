@@ -1,308 +1,425 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Swagath Indian Grocery Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg: #eef4df;
+      --bg-2: #e4efd1;
+      --ink: #1e1b16;
+      --muted: #4b5c3b;
+      --accent: #c23b2a;
+      --accent-2: #5a8f2e;
+      --card: #f8fff0;
+      --shadow: 0 16px 40px rgba(30, 27, 22, 0.16);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 17px;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #ffe7bf 0%, transparent 60%),
+        radial-gradient(900px 600px at 90% 0%, #f9d4c7 0%, transparent 60%),
+        linear-gradient(140deg, var(--bg) 0%, var(--bg-2) 100%);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 26px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+      letter-spacing: 0.5px;
+    }
+
+    .brand span {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(30, 27, 22, 0.15);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .hero {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .hero-copy {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 26px 26px 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(30, 27, 22, 0.08);
+    }
+
+    .hero-copy h2 {
+      margin: 0 0 12px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.4vw, 2.7rem);
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .hero-copy .info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: #fff5e8;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(30, 27, 22, 0.08);
+      font-weight: 600;
+    }
+
+    .hero-image {
+      min-height: 320px;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(30, 27, 22, 0.08);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.45) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .category-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin: 28px 0 10px;
+    }
+
+    .category-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(30, 27, 22, 0.08);
+      text-align: center;
+      font-weight: 600;
+      color: var(--muted);
+      box-shadow: 0 8px 18px rgba(30, 27, 22, 0.08);
+    }
+
+    .section-title {
+      margin: 40px 0 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.3rem;
+    }
+
+    .product-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .product-card {
+      background: #fffdf8;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(30, 27, 22, 0.08);
+      box-shadow: 0 12px 24px rgba(30, 27, 22, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card .content {
+      padding: 12px 14px 16px;
+    }
+
+    .product-card h4 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+
+    .product-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .benefits {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .benefit {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: #fff5ec;
+      border: 1px solid rgba(30, 27, 22, 0.08);
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .cta {
+      margin-top: 48px;
+      padding: 24px;
+      background: linear-gradient(120deg, #f6b145 0%, #e4683e 100%);
+      color: #1f1a17;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .cta h3 {
+      margin: 0 0 8px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+    }
+
+    .cta p {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 38px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .hero-image {
+        min-height: 240px;
+      }
+
+      .product-card img {
+        height: 150px;
+      }
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Swagath Indian Grocery Store&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f7f7f7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #2e7d32;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 16px 24px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header h1 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header nav a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-left: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header nav a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 1100px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 24px 16px 40px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 1px 3px rgba(0,0,0,0.08);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>section h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #2e7d32;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Product grid */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.products-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #e0e0e0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fafafa;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 4px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.05rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-category {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #757575;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-price {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #e65100;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-stock {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #2e7d32;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.product-stock.out {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #c62828;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Store info */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.info-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.info-block {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1 1 240px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.info-block h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #424242;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hours-list, .address, .contact {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #263238;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 600px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>align-items: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>header nav {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>margin-top: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Swagath Indian Grocery Store&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#products"&gt;Products&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#info"&gt;Store Info&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#contact"&gt;Contact&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Products section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="products"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Products Available In Store&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Here are some of the popular items available at Swagath Indian Grocery Store in Sudbury.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="products-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Lentils (Dal)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Pulses&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$4.99 / kg&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Samosas&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Snacks&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$1.50 each&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;Fresh daily&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Vada Pav&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Snacks&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$3.99 each&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;Limited stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Dabeli&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Snacks&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$3.99 each&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Indian Chai&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Beverages&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$5.99 / pack&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Indian Sweets&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Sweets &amp; Desserts&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$9.99 / box&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Cool Drinks&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Beverages&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$1.99 each&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Rice&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Grains&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$19.99 / 10 kg bag&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Wheat Flour (Atta)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Flours &amp; Grains&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$12.99 / 10 kg bag&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Cookies &amp; Biscuits&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Snacks&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;$2.99 / pack&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Fresh Produce&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Vegetables &amp; Fruits&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;Prices vary&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;Daily fresh stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Dairy Products&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-category"&gt;Dairy&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-price"&gt;Prices vary&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="product-stock"&gt;In stock&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Store info section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Store Information&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="info-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-block"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Store Hours&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hours-list"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Monday – Sunday: 10:00 AM – 10:00 PM&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-block"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Store Address&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="address"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Swagath Indian Grocery Store&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;1177 Barry Downe Rd&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Sudbury, ON&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Canada&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Contact section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="contact"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Contact Us&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="info-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-block"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Call or Visit&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="contact"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Phone: (XXX) XXX‑XXXX&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Email: info@swagathindiangrocery.ca&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;You can call us during store hours for product availability and special orders.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-block"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Find Us On Map&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="contact"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Tap the link below to open our location on Google Maps:</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;a href="https://www.google.com/maps/search/?api=1&amp;query=1177+Barry+Downe+Rd+Sudbury+ON"</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>target="_blank" rel="noopener"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Open Swagath Indian Grocery Store in Google Maps</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2026 Swagath Indian Grocery Store. All rights reserved.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <span>Indian Grocery Store</span>
+        <h1>Swagath Indian Grocery Store</h1>
+      </div>
+      <div class="topbar-actions">
+        <div class="pill">Open Daily 10:00 AM - 10:00 PM</div>
+        <div class="pill">1177 Barry Downe Rd, Sudbury, ON</div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h2>Fresh essentials, vibrant flavors, everyday savings.</h2>
+        <p>
+          Discover pantry staples, snacks, and ready-to-enjoy favorites sourced for the community.
+          Find the ingredients you love, from street-food classics to daily staples.
+        </p>
+        <div class="info">
+          <div class="info-card">Open Mon-Sun • 10:00 AM - 10:00 PM</div>
+          <div class="info-card">In-store only • Fresh produce, dairy, and snacks</div>
+          <div class="info-card">Visit us at 1177 Barry Downe Rd, Sudbury, ON</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/storefront.JPG" alt="Swagath Indian Grocery Store storefront" loading="lazy" />
+        <div class="hero-overlay">Your neighborhood Indian grocery in Sudbury</div>
+      </div>
+    </section>
+
+    <div class="category-strip">
+      <div class="category-card">Atta & Flours</div>
+      <div class="category-card">Pulses & Lentils</div>
+      <div class="category-card">Snacks & Street Food</div>
+      <div class="category-card">Tea & Beverages</div>
+      <div class="category-card">Sweets & Desserts</div>
+      <div class="category-card">Produce & Dairy</div>
+    </div>
+
+    <h2 class="section-title">Available Products</h2>
+    <section class="product-grid">
+      <article class="product-card">
+        <img src="images/pulses_620x400.jpg" alt="Assorted lentils and pulses" loading="lazy" />
+        <div class="content">
+          <h4>Lentils</h4>
+          <p>Protein-rich staples for dals and curries.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/Samosa.webp" alt="Samosas" loading="lazy" />
+        <div class="content">
+          <h4>Samosas</h4>
+          <p>Golden, savory pastries with spiced filling.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/PHOTO-2026-02-17-11-47-33.jpg" alt="Ready-to-eat snack wrap" loading="lazy" />
+        <div class="content">
+          <h4>Vadapav</h4>
+          <p>Classic Mumbai-style potato fritter bun.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/Dabeli.jpg" alt="Dabeli" loading="lazy" />
+        <div class="content">
+          <h4>Dabeli</h4>
+          <p>Sweet and spicy street-food favorite.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/chai.jpg" alt="Masala chai" loading="lazy" />
+        <div class="content">
+          <h4>Chai</h4>
+          <p>Traditional spiced tea blends and mixes.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/PHOTO-2026-02-14-11-53-05.jpg" alt="Assorted sweets" loading="lazy" />
+        <div class="content">
+          <h4>Sweets</h4>
+          <p>Festive treats, laddus, and dessert bites.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="https://cdn.pixabay.com/photo/2018/09/14/20/57/beverages-3678170_1280.jpg" alt="Cool drinks" loading="lazy" />
+        <div class="content">
+          <h4>Cool Drinks</h4>
+          <p>Refreshing beverages and sodas.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/rice.jpg" alt="Rice" loading="lazy" />
+        <div class="content">
+          <h4>Rice</h4>
+          <p>Everyday grains and premium basmati.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/wheat-500x500.webp" alt="Wheat" loading="lazy" />
+        <div class="content">
+          <h4>Wheat</h4>
+          <p>Whole wheat flour and atta varieties.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/cookies.avif" alt="Cookies" loading="lazy" />
+        <div class="content">
+          <h4>Cookies</h4>
+          <p>Crunchy snacks to pair with tea.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="images/PHOTO-2026-02-13-23-06-54.jpg" alt="Fresh tomatoes" loading="lazy" />
+        <div class="content">
+          <h4>Produce</h4>
+          <p>Seasonal vegetables and herbs.</p>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="https://cdn.pixabay.com/photo/2018/03/16/16/42/milk-3231772_1280.jpg" alt="Milk and yogurt" loading="lazy" />
+        <div class="content">
+          <h4>Dairy Products</h4>
+          <p>Milk, paneer, yogurt, and more.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit">Fresh arrivals every week</div>
+      <div class="benefit">Trusted Indian brands</div>
+      <div class="benefit">Community-focused service</div>
+      <div class="benefit">Easy in-store shopping</div>
+    </section>
+
+    <section class="cta">
+      <h3>Visit Swagath Today</h3>
+      <p>1177 Barry Downe Rd, Sudbury, ON</p>
+      <p>Open daily from 10:00 AM to 10:00 PM</p>
+    </section>
+
+    <footer>
+      Swagath Indian Grocery Store - Fresh essentials every day.
+    </footer>
+  </div>
 </body>
 </html>
